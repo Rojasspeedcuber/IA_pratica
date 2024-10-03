@@ -1,6 +1,5 @@
 import time
 
-
 def expandir_modificando(estado):
     """
     Expande o estado atual modificando diretamente o estado do pai,
@@ -38,8 +37,7 @@ def expandir_copiando(estado):
                     x, y = i + dx, j + dy
                     if 0 <= x < 3 and 0 <= y < 3:  # Verifica se o movimento é válido
                         estado_copia = [linha[:] for linha in estado]  # Cria uma cópia do estado
-                        estado_copia[i][j], estado_copia[x][y] = estado_copia[x][y], estado_copia[i][
-                            j]  # Troca as peças
+                        estado_copia[i][j], estado_copia[x][y] = estado_copia[x][y], estado_copia[i][j]  # Troca as peças
                         filhos.append(estado_copia)
     return filhos
 
@@ -73,7 +71,7 @@ def busca_profundidade_iterativa(estado_inicial, funcao_expansao, limite=20):
 
 
 
-estado_inicial = [[4, 1, 3], [7, 2, 6], [5, 8, 0]]
+estado_inicial = [[4, 1, 3], [8, 2, 6], [5, 7, 0]]
 
 inicio = time.time()
 solucao_copiando = busca_profundidade_iterativa(estado_inicial, expandir_copiando)
@@ -86,24 +84,30 @@ fim = time.time()
 print(f"Tempo de execução com expansão modificando: {fim - inicio} segundos")
 
 solucao = busca_profundidade_iterativa(estado_inicial, expandir_copiando)
-print("Solução copiando:")
-i = 1
-for estado in solucao:
-    print(f"Estado {i}:")
-    print(estado[0], '\n',
-          estado[1], '\n',
-          estado[2])
-    print("--------------------")
-    i += 1
 
-solucao = busca_profundidade_iterativa(estado_inicial, expandir_modificando)
-print("Solução modificando:")
-i = 1
-for estado in solucao:
-    print(f"Estado {i}:")
-    print(estado[0], '\n',
-          estado[1], '\n',
-          estado[2])
-    print("--------------------")
-    i += 1
+
+try:
+
+    print("Solução copiando:")
+    i = 1
+    for estado in solucao:
+        print(f"Estado {i}:")
+        print(estado[0], '\n',
+            estado[1], '\n',
+            estado[2])
+        print("--------------------")
+        i += 1
+
+    solucao = busca_profundidade_iterativa(estado_inicial, expandir_modificando)
+    print("Solução modificando:")
+    i = 1
+    for estado in solucao:
+        print(f"Estado {i}:")
+        print(estado[0], '\n',
+            estado[1], '\n',
+            estado[2])
+        print("--------------------")
+        i += 1
+except:
+    print("Solução impossível!!")
 
