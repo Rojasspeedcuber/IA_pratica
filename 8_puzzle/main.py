@@ -69,9 +69,13 @@ def busca_profundidade_iterativa(estado_inicial, funcao_expansao, limite=20):
 
 
 
+# O número "0" está representando o espaço vazio.
+
+estado_inicial = [[4, 1, 3], 
+                  [7, 2, 6], 
+                  [5, 8, 0]]
 
 
-estado_inicial = [[4, 1, 3], [8, 2, 6], [5, 7, 0]]
 
 inicio = time.time()
 solucao_copiando = busca_profundidade_iterativa(estado_inicial, expandir_copiando)
@@ -93,8 +97,8 @@ try:
     for estado in solucao:
         print(f"Estado {i}:")
         print(estado[0], '\n',
-            estado[1], '\n',
-            estado[2])
+              estado[1], '\n',
+              estado[2])
         print("--------------------")
         i += 1
 
@@ -104,8 +108,8 @@ try:
     for estado in solucao:
         print(f"Estado {i}:")
         print(estado[0], '\n',
-            estado[1], '\n',
-            estado[2])
+              estado[1], '\n',
+              estado[2])
         print("--------------------")
         i += 1
 except:
